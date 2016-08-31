@@ -1,0 +1,21 @@
+package hoja6;
+
+import java.util.Set;
+
+
+/**
+ * 
+ *Interfaz para las fabricas de Stacks
+ * @author Carlos Calderon, 15219
+ * @author Jorge Azmitia,15202
+ * @version 2.0 agosto 15, 2016
+ * 
+ */
+public interface setfactory {
+
+	/**
+	 * @param tipoStack , tipo de Stack escogido
+	 * @return	el tipo de Stack seleccionado
+	 */
+	Set crearSet (String tipoSet);
+}
