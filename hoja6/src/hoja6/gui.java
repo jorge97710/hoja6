@@ -1,12 +1,10 @@
 package hoja6;
-
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -15,11 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JTextPane;
 
 public class gui {
 	static String tipo = "", tipoL = "", tipoS = "";
@@ -68,7 +66,7 @@ public class gui {
 		setfactory Creasets = fabricador.set();
 		miSet = Creasets.crearSet(tipo);
 		frame = new JFrame();
-		frame.setBounds(100, 100, 560, 254);
+		frame.setBounds(100, 100, 361, 254);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -103,7 +101,7 @@ public class gui {
 		txtNombrea = new JTextField();
 		txtNombrea.setBounds(10, 48, 134, 20);
 		frame.getContentPane().add(txtNombrea);
-		txtNombrea.setColumns(10);	
+		txtNombrea.setColumns(10);
 		
 		
 		// Agregar listeners
@@ -242,7 +240,13 @@ public class gui {
 					}
 				}
 				System.out.println(miTree);
-
+				try {
+					//Instancio la clase Despopiniones y la paso como parametros el curso, el catedratico y la opinion
+					Despliegue dialog = new Despliegue();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception ex) {
+				}
 			}
 		}
 	}
