@@ -1,5 +1,6 @@
 package hoja6;
 import javax.swing.JDialog;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextArea;
@@ -19,7 +20,9 @@ public class Despliegue extends JDialog{
 
 		//Atributos
 		private String despliegue="";
-		private JTextArea textArea = new JTextArea();
+		public JTextArea textArea = new JTextArea();
+		private final static String newline = "\n";
+
 		//Metodo constructor 
 		public Despliegue() {
 			getContentPane().setBackground(Color.DARK_GRAY);
@@ -51,6 +54,17 @@ public class Despliegue extends JDialog{
 			textArea.setForeground(Color.DARK_GRAY);
 			textArea.setBackground(Color.WHITE);
 			textArea.setLineWrap(true);
+			//textArea.append("Saben las 3: "+ newline);
+			
+			
+			//textArea.append("saben java pero no web: "+ newline);
+			
+			//textArea.append("saben web y celular  pero no java: "+ newline);
+			//textArea.append("web o celular pero no java: "+ newline);
+
+			//textArea.append("el conjunto mas grande: "+ newline);
+			
+//			textArea.append("el conjunto mas grande en orden: "+ newline);
 			scrollPane.setViewportView(textArea);
 			getContentPane().setLayout(groupLayout);
 				//Se agrega el layout al JDialog 
