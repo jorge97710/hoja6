@@ -178,15 +178,7 @@ public class gui {
 					}
 				}
 
-				System.out
-						.println("Desarrolladores con experiencia en web o celular y no en java");
-				for (Desarrollador der : miSet) {
-					if (der.isJava() == false
-							&& (der.isCel() == true || der.isWeb() == true)) {
-						System.out.println(der.getNombre());
-					}
-				}
-
+			
 				// 5
 				System.out.println("El conjunto mas grande de desarrolladores");
 				for (Desarrollador der : miSet) {
