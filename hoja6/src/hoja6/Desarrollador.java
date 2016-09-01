@@ -3,14 +3,23 @@ package hoja6;
 public class Desarrollador implements Comparable<Desarrollador>{
 	//Atributos
 	private String nombre;
-	private boolean web=false,java=false,cel=false;
+	private int id;
+	private boolean web,java,cel;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
-	public Desarrollador(String nombre, boolean web, boolean java, boolean cel) {
+	
+	public Desarrollador(String nombre, boolean web, boolean java, boolean cel,int id) {
 		super();
 		this.nombre = nombre;
 		this.web = web;
 		this.java = java;
 		this.cel = cel;
+		this.id=id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -43,6 +52,6 @@ public class Desarrollador implements Comparable<Desarrollador>{
 	@Override
 	public int compareTo(Desarrollador arg0) {
 		  Integer retorno = null;
-		  return retorno = this.nombre.compareTo(arg0.nombre);
+		  return retorno = this.id - arg0.id;
 	}
 }

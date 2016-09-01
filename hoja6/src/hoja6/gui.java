@@ -26,6 +26,7 @@ public class gui {
 	private JCheckBox chckbxWeb = new JCheckBox("Web");
 	private JCheckBox chckbxMovil = new JCheckBox("Movil");
 	private Set<Desarrollador> miSet;
+	private int id=0;
 
 	/**
 	 * Launch the application.
@@ -75,22 +76,22 @@ public class gui {
 		btnEnviar = new JButton("Enviar");
 		btnEnviar.setBounds(164, 162, 86, 35);
 		frame.getContentPane().add(btnEnviar);
-		btnEnviar.addActionListener(new ManejadorEventos());
+		
 
 		btnMostrarResultados = new JButton("Mostrar Resultados");
 		btnMostrarResultados.setBounds(10, 162, 146, 35);
 		frame.getContentPane().add(btnMostrarResultados);
-		btnMostrarResultados.addActionListener(new ManejadorEventos());
+		
 
-		JCheckBox chckbxJava = new JCheckBox("Java");
+		chckbxJava = new JCheckBox("Java");
 		chckbxJava.setBounds(164, 44, 108, 35);
 		frame.getContentPane().add(chckbxJava);
 
-		JCheckBox chckbxWeb = new JCheckBox("Web");
+		chckbxWeb = new JCheckBox("Web");
 		chckbxWeb.setBounds(164, 82, 108, 35);
 		frame.getContentPane().add(chckbxWeb);
 
-		JCheckBox chckbxMovil = new JCheckBox("Movil");
+		chckbxMovil = new JCheckBox("Movil");
 		chckbxMovil.setBounds(164, 120, 108, 35);
 		frame.getContentPane().add(chckbxMovil);
 
@@ -98,8 +99,13 @@ public class gui {
 		txtNombrea.setBounds(10, 48, 134, 20);
 		frame.getContentPane().add(txtNombrea);
 		txtNombrea.setColumns(10);
-		btnEnviar.addActionListener(new ManejadorEventos());
 		
+		//Agregar listeners
+		btnEnviar.addActionListener(new ManejadorEventos());
+		btnMostrarResultados.addActionListener(new ManejadorEventos());
+		chckbxJava.addActionListener(new ManejadorEventos());
+		chckbxWeb.addActionListener(new ManejadorEventos());
+		chckbxMovil.addActionListener(new ManejadorEventos());
 	}
 
 	private class ManejadorEventos implements ActionListener {
@@ -108,20 +114,20 @@ public class gui {
 
 			if (e.getSource() == btnEnviar) {
 
-				if (e.getSource() == chckbxJava) {
+				if (chckbxJava.isSelected() ) {
 					opcion = true;
 				} else {
 					opcion = false;
 
 				}
-				if (e.getSource() == chckbxWeb) {
+				if (chckbxWeb.isSelected() ) {
 					opcion1 = true;
 
 				} else {
 					opcion1 =  false;
 
 				}
-				if (e.getSource() == chckbxMovil) {
+				if (chckbxMovil.isSelected() ) {
 					opcion2 = true;
 
 				} else {
@@ -129,19 +135,30 @@ public class gui {
 
 				}
 		
+				id++;
+				miSet.add(new Desarrollador(txtNombrea.getText(),opcion1,opcion,opcion2,id));
 				
-				//Desarrollador des= new Desarrollador(txtNombrea.getText(),opcion,opcion1,opcion2);
-				miSet.add(new Desarrollador(txtNombrea.getText(),opcion,opcion1,opcion2));
-				/*miSet.add(txtNombrea.getText());
-				miSet.add(opcion);
-				miSet.add(opcion1);
-				miSet.add(opcion2);
-			*/
 			}
 		if (e.getSource() == btnMostrarResultados ) {
+			System.out.println("Interseccion de conjuntos\n Desarrolladores con experiencia en 3");
 			for (Desarrollador der: miSet){
-				System.out.println(der.getNombre());
+				if (der.isJava()==true && der.isCel()==true && der.isWeb()==true){
+					System.out.println(der.getNombre());
+				}
 			}
+			System.out.println("Saben Java pero no saben web");
+			for (Desarrollador der: miSet){
+				if (der.isJava()==true && der.isWeb()==false){
+					System.out.println(der.getNombre());
+				}
+			}
+			System.out.println("No saben java pero pueden tener de lo otro");
+			for (Desarrollador der: miSet){
+				if (der.isJava()==false){
+					System.out.println(der.getNombre());
+				}
+			}
+			
 		}
 		}
 	}
