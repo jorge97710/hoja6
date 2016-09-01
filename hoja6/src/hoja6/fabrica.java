@@ -17,18 +17,18 @@ public class fabrica implements setfactory {
 
 	
 	@Override
-	public Set crearSet(String tipoSet) {
+	public Set<Desarrollador> crearSet(String tipoSet) {
 
 		if ("HS".equalsIgnoreCase(tipoSet)) {
-			return new HashSet<String>();
+			return new HashSet<Desarrollador>();
 		}
 		if ("TS".equalsIgnoreCase(tipoSet)) {
-			return new TreeSet<String>();
+			return new TreeSet<Desarrollador>();
 
 		}
 
 		if ("LHS".equalsIgnoreCase(tipoSet)) {
-			return new LinkedHashSet<String>();
+			return new LinkedHashSet<Desarrollador>();
 
 		}
 

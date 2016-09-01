@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -16,14 +17,15 @@ import javax.swing.JCheckBox;
 
 public class gui {
 	static String tipo = "", tipoL = "", tipoS = "";
-	public String opcion = "", opcion1 = "", opcion2 = "";
+	public boolean opcion =false, opcion1 = false, opcion2 = false;
 	static Logica milogica = new Logica();
-	private JButton btnEnviar;
+	private JButton btnEnviar,btnMostrarResultados;
 	private JFrame frame;
 	private JTextField txtNombrea;
 	private JCheckBox chckbxJava = new JCheckBox("Java");
 	private JCheckBox chckbxWeb = new JCheckBox("Web");
 	private JCheckBox chckbxMovil = new JCheckBox("Movil");
+	private Set<Desarrollador> miSet;
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,8 @@ public class gui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		setfactory Creasets = fabricador.set();
+		miSet = Creasets.crearSet(tipo);
 		frame = new JFrame();
 		frame.setBounds(100, 100, 308, 252);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,17 +72,15 @@ public class gui {
 		lblAmbientes.setBounds(164, 23, 134, 14);
 		frame.getContentPane().add(lblAmbientes);
 
-		JButton btnEnviar = new JButton("Enviar");
-		btnEnviar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		btnEnviar = new JButton("Enviar");
 		btnEnviar.setBounds(164, 162, 86, 35);
 		frame.getContentPane().add(btnEnviar);
+		btnEnviar.addActionListener(new ManejadorEventos());
 
-		JButton btnMostrarResultados = new JButton("Mostrar Resultados");
+		btnMostrarResultados = new JButton("Mostrar Resultados");
 		btnMostrarResultados.setBounds(10, 162, 146, 35);
 		frame.getContentPane().add(btnMostrarResultados);
+		btnMostrarResultados.addActionListener(new ManejadorEventos());
 
 		JCheckBox chckbxJava = new JCheckBox("Java");
 		chckbxJava.setBounds(164, 44, 108, 35);
@@ -97,43 +99,50 @@ public class gui {
 		frame.getContentPane().add(txtNombrea);
 		txtNombrea.setColumns(10);
 		btnEnviar.addActionListener(new ManejadorEventos());
+		
 	}
 
 	private class ManejadorEventos implements ActionListener {
-
+		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource() == btnEnviar) {
 
 				if (e.getSource() == chckbxJava) {
-					opcion = "si";
+					opcion = true;
 				} else {
-					opcion = "no";
+					opcion = false;
 
 				}
 				if (e.getSource() == chckbxWeb) {
-					opcion1 = "si";
+					opcion1 = true;
 
 				} else {
-					opcion1 = "no";
+					opcion1 =  false;
 
 				}
 				if (e.getSource() == chckbxMovil) {
-					opcion2 = "si";
+					opcion2 = true;
 
 				} else {
-					opcion2 = "no";
+					opcion2 =  false;
 
 				}
-				setfactory Creasets = fabricador.set();
-				Set miSet = Creasets.crearSet(tipo);
-				miSet.add(txtNombrea.getText());
+		
+				
+				//Desarrollador des= new Desarrollador(txtNombrea.getText(),opcion,opcion1,opcion2);
+				miSet.add(new Desarrollador(txtNombrea.getText(),opcion,opcion1,opcion2));
+				/*miSet.add(txtNombrea.getText());
 				miSet.add(opcion);
 				miSet.add(opcion1);
 				miSet.add(opcion2);
-
+			*/
 			}
-
+		if (e.getSource() == btnMostrarResultados ) {
+			for (Desarrollador der: miSet){
+				System.out.println(der.getNombre());
+			}
+		}
 		}
 	}
 }
