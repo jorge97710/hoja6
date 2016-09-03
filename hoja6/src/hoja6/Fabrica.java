@@ -7,17 +7,21 @@ import java.util.TreeSet;
 
 /**
  * 
- *Clase fabrica para los Stacks
+ * Esta clase es la fabrica de las implementaciones de Set.
  * @author Carlos Calderon, 15219
  * @author Jorge Azmitia,15202
- * @version 2.0 agosto 15, 2016
+ * @version 3.0 Septiembre 3, 2016 
  * 
  */
-public class fabrica implements setfactory {
+public class Fabrica implements SetFactory {
 
-	
+
+	/* (non-Javadoc)
+	 * @see hoja6.setfactory#crearSet(java.lang.String)
+	 * Dependiendo el String, sera la implementacion a usar
+	 */
 	@Override
-	public Set<Desarrollador> crearSet(String tipoSet) {
+	public Set crearSet(String tipoSet) {
 
 		if ("HS".equalsIgnoreCase(tipoSet)) {
 			return new HashSet<Desarrollador>();
