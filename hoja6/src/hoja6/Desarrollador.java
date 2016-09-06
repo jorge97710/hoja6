@@ -2,13 +2,13 @@ package hoja6;
 
 /**
  * 
- * Esta clase simula a un desarrollador.
+ * Esta clase simula a un desarrollador, implementa Comparable como forma de criterio para el Treeset.
  * @author Carlos Calderon, 15219
  * @author Jorge Azmitia,15202
  * @version 3.0 Septiembre 3, 2016 
  * 
  */
-public class Desarrollador {
+public class Desarrollador implements Comparable<Desarrollador>{
 	/*Atributos*/
 	private String nombre;
 	private int id;
@@ -97,6 +97,13 @@ public class Desarrollador {
 	public String toString() {
 		return "Desarrollador [nombre=" + nombre + "]";
 	}
-	
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 * Criterio para usar Treeset
+	 */
+	@Override
+	public int compareTo(Desarrollador arg0) {
+		Integer retorno = null;
+		return retorno = this.id - arg0.id;
+	}
 }
